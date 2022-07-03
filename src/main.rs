@@ -6,14 +6,6 @@ fn print_usage(program: &str, opts: Options) {
     println!("{}", opts.usage(&brief));
 }
 
-fn match_line<'a, 'b>(
-    line: &'a str,
-    candidates: &HashMap<&'b str, &'b str>,
-) -> Option<(&'a str, &'b str)> {
-    line.split_once('=')
-        .and_then(|(key, _)| candidates.get(key).map(|&value| (key, value)))
-}
-
 fn main() -> io::Result<()> {
     let args = env::args().collect::<Vec<String>>();
     let program = args[0].clone();
@@ -21,6 +13,7 @@ fn main() -> io::Result<()> {
     let mut opts = Options::new();
 
     opts.optflag("h", "help", "print this help menu");
+    opts.optflag("v", "version", "print the version");
 
     let matches = match opts.parse(&args[1..]) {
         Ok(m) => m,
@@ -30,21 +23,39 @@ fn main() -> io::Result<()> {
     if matches.opt_present("h") {
         print_usage(&program, opts);
         return Ok(());
+    } else if matches.opt_present("v") {
+        println!("{}", env!("CARGO_PKG_VERSION"));
+        return Ok(());
     }
 
-    let candidates: HashMap<&str, &str> = matches
+    let mut candidates: HashMap<&str, (&str, bool)> = matches
         .free
         .iter()
-        .filter_map(|candidate| candidate.split_once('='))
+        .filter_map(|candidate| {
+            candidate
+                .split_once('=')
+                .map(|(key, value)| (key, (value, false)))
+        })
         .collect();
 
     for line in lines {
         let line = line?;
-        if let Some((key, value)) = match_line(&line, &candidates) {
+        let pair = line.split_once('=').and_then(|(key, _)| {
+            candidates.get_mut(key).map(|(value, found)| {
+                *found = true;
+                (key, value)
+            })
+        });
+
+        if let Some((key, value)) = pair {
             println!("{}={}", key, value);
         } else {
             println!("{}", line);
         }
+    }
+
+    for (key, (value, _)) in candidates.iter().filter(|(_, (_, found))| !found) {
+        println!("{}={}", key, value);
     }
 
     Ok(())
