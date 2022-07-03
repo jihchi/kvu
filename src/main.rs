@@ -10,7 +10,7 @@ fn match_line<'a, 'b>(
     line: &'a str,
     candidates: &HashMap<&'b str, &'b str>,
 ) -> Option<(&'a str, &'b str)> {
-    line.split_once("=")
+    line.split_once('=')
         .and_then(|(key, _)| candidates.get(key).map(|&value| (key, value)))
 }
 
@@ -35,7 +35,7 @@ fn main() -> io::Result<()> {
     let candidates: HashMap<&str, &str> = matches
         .free
         .iter()
-        .filter_map(|candidate| candidate.split_once("="))
+        .filter_map(|candidate| candidate.split_once('='))
         .collect();
 
     for line in lines {
