@@ -10,3 +10,19 @@ Simplest tool to update/add key-value pairs/lines
 └──────────────────────────┘                                         └──────────────────────────┘
 ```
 
+## Usage
+
+### Create new pair
+
+```sh
+echo "BUCKET=public" | kvu TOKEN=348a1912
+BUCKET=public
+TOKEN=348a1912
+```
+
+### Update existing pairs
+
+```sh
+echo "BUCKET=public" | kvu BUCKET=assets
+BUCKET=assets
+```
