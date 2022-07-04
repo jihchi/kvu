@@ -10,6 +10,14 @@ The simplest command line tool to manage key-value pair lines.
 └──────────────────────────┘                                         └──────────────────────────┘
 ```
 
+## Installation
+
+### Cargo
+
+```sh
+cargo install kvu
+```
+
 ## Usage
 
 > Arguments without any flag works as upsert operation - create new pair if the
