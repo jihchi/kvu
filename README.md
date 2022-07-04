@@ -16,7 +16,7 @@ The simplest command line tool to manage key-value pair lines.
 key does not exist, or update the value of the key if the key does exist.
 
 ```console
-echo -e "BUCKET=public\nREGION=ap-southeast-1" | kvu TOKEN=348a1912 REGION=eu-north-1
+$ echo -e "BUCKET=public\nREGION=ap-southeast-1" | kvu TOKEN=348a1912 REGION=eu-north-1
 BUCKET=public
 REGION=eu-north-1
 TOKEN=348a1912
