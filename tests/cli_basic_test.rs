@@ -13,7 +13,7 @@ fn sanity_check() {
 }
 
 #[test]
-fn test_do_nothing() {
+fn test_does_nothing() {
     Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap().assert().success();
 }
 
