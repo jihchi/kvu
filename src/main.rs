@@ -85,10 +85,10 @@ fn main() -> io::Result<()> {
         let line = line?;
         let pair = line
             .split_once('=')
-            .and_then(|(key, _)| operations.get(key).map(|op| (key, op)))
-            .and_then(|(key, op)| match op {
+            .and_then(|(key, _)| operations.get(key).map(|operation| (key, operation)))
+            .and_then(|(key, operation)| match operation {
                 Operation::Upsert(value) => {
-                    to_create.remove(key); // don't create when the key exists
+                    to_create.remove(key); // the value of the key will be updated, don't need to create
                     Some((key, value))
                 }
                 Operation::Update(value) => Some((key, value)),
