@@ -2,10 +2,10 @@ use assert_cmd::Command;
 use indoc::indoc;
 
 #[test]
-fn test_update_existing_pair() {
+fn test_delete_existing_pair() {
     Command::cargo_bin(env!("CARGO_PKG_NAME"))
         .unwrap()
-        .args(&["-u", "DB_PASSWORD=348a1912"])
+        .args(&["-d", "DB_PASSWORD"])
         .write_stdin(indoc! {r#"
           DB_URI=postgres://db/kvu
           DB_USERNAME=kvu
@@ -16,7 +16,6 @@ fn test_update_existing_pair() {
         .stdout(indoc! {r#"
           DB_URI=postgres://db/kvu
           DB_USERNAME=kvu
-          DB_PASSWORD=348a1912
         "#});
 }
 
@@ -24,7 +23,7 @@ fn test_update_existing_pair() {
 fn test_does_nothing_when_the_key_does_not_exist() {
     Command::cargo_bin(env!("CARGO_PKG_NAME"))
         .unwrap()
-        .args(&["-u", "DB_PASSWORD=348a1912"])
+        .args(&["-d", "DB_PASSWORD"])
         .write_stdin(indoc! {r#"
           DB_URI=postgres://db/kvu
           DB_USERNAME=kvu
