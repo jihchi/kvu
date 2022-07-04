@@ -89,14 +89,16 @@ fn main() -> io::Result<()> {
             .and_then(|(key, _)| operations.get(key).map(|operation| (key, operation)))
         {
             match operation {
-                Operation::Create(_) => {
-                    to_create.remove(key); // don't create when the key exists
-                    println!("{}", line);
+                Operation::Create(_) => println!("{}", line),
+                Operation::Update(value) | Operation::Upsert(value) => {
+                    println!("{}={}", key, value)
                 }
-                Operation::Update(value) => println!("{}={}", key, value),
-                Operation::Upsert(value) => {
-                    println!("{}={}", key, value);
-                    to_create.remove(key); // the value of the key will be updated, don't need to create
+                Operation::Delete => (),
+            }
+            // don't create new key-value pair when the key already exists
+            match operation {
+                Operation::Create(_) | Operation::Update(_) | Operation::Upsert(_) => {
+                    to_create.remove(key);
                 }
                 Operation::Delete => (),
             }
