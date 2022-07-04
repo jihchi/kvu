@@ -4,6 +4,12 @@ version = "0.1.0"
 edition = "2021"
 description = "The simplest command line tool to manage key-value pair lines."
 license = "MIT"
+author = ["Jihchi Lee <achi@987.tw>"]
+documentation = "https://docs.rs/kvu"
+homepage = "https://github.com/jihchi/kvu"
+repository = "https://github.com/jihchi/kvu"
+keywords = ["env", "dotenv", "environment", "config", "key-value"]
+categories = ["command-line-utilities", "development-tools", "text-processing", "value-formatting", "config"]
 
 [dev-dependencies]
 assert_cmd = "2.0.4"
