@@ -2,6 +2,8 @@
 name = "kvu"
 version = "0.1.0"
 edition = "2021"
+description = "The simplest command line tool to manage key-value pair lines."
+license = "MIT"
 
 [dev-dependencies]
 assert_cmd = "2.0.4"
