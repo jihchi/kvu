@@ -3,7 +3,7 @@ use predicates::prelude::*;
 
 #[test]
 fn sanity_check() {
-    Command::cargo_bin("kvu")
+    Command::cargo_bin(env!("CARGO_PKG_NAME"))
         .unwrap()
         .arg("-h")
         .assert()
@@ -14,12 +14,12 @@ fn sanity_check() {
 
 #[test]
 fn test_do_nothing() {
-    Command::cargo_bin("kvu").unwrap().assert().success();
+    Command::cargo_bin(env!("CARGO_PKG_NAME")).unwrap().assert().success();
 }
 
 #[test]
 fn test_version() {
-    Command::cargo_bin("kvu")
+    Command::cargo_bin(env!("CARGO_PKG_NAME"))
         .unwrap()
         .arg("-v")
         .assert()

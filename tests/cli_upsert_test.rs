@@ -3,7 +3,7 @@ use indoc::indoc;
 
 #[test]
 fn test_replace_when_present() {
-    Command::cargo_bin("kvu")
+    Command::cargo_bin(env!("CARGO_PKG_NAME"))
         .unwrap()
         .arg("DB_PASSWORD=348a1912")
         .write_stdin(indoc! {r#"
@@ -22,7 +22,7 @@ fn test_replace_when_present() {
 
 #[test]
 fn test_add_when_absent() {
-    Command::cargo_bin("kvu")
+    Command::cargo_bin(env!("CARGO_PKG_NAME"))
         .unwrap()
         .arg("TOKEN=348a1912")
         .write_stdin(indoc! {r#"
@@ -42,7 +42,7 @@ fn test_add_when_absent() {
 
 #[test]
 fn test_replace_multiple_arguments() {
-    Command::cargo_bin("kvu")
+    Command::cargo_bin(env!("CARGO_PKG_NAME"))
         .unwrap()
         .arg("DB_USERNAME=key-value-update")
         .arg("DB_PASSWORD=348a1912")
@@ -62,7 +62,7 @@ fn test_replace_multiple_arguments() {
 
 #[test]
 fn test_replace_multiple_arguments_and_add_new() {
-    Command::cargo_bin("kvu")
+    Command::cargo_bin(env!("CARGO_PKG_NAME"))
         .unwrap()
         .arg("DB_USERNAME=key-value-update")
         .arg("DB_PASSWORD=348a1912")
