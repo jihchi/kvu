@@ -83,24 +83,23 @@ fn main() -> io::Result<()> {
 
     for line in lines {
         let line = line?;
-        let pair = line
+
+        if let Some((key, operation)) = line
             .split_once('=')
             .and_then(|(key, _)| operations.get(key).map(|operation| (key, operation)))
-            .and_then(|(key, operation)| match operation {
-                Operation::Upsert(value) => {
-                    to_create.remove(key); // the value of the key will be updated, don't need to create
-                    Some((key, value))
-                }
-                Operation::Update(value) => Some((key, value)),
+        {
+            match operation {
                 Operation::Create(_) => {
                     to_create.remove(key); // don't create when the key exists
-                    None
+                    println!("{}", line);
                 }
-                Operation::Delete => None,
-            });
-
-        if let Some((key, value)) = pair {
-            println!("{}={}", key, value);
+                Operation::Update(value) => println!("{}={}", key, value),
+                Operation::Upsert(value) => {
+                    println!("{}={}", key, value);
+                    to_create.remove(key); // the value of the key will be updated, don't need to create
+                }
+                Operation::Delete => (),
+            }
         } else {
             println!("{}", line);
         }
