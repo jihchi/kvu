@@ -1,6 +1,6 @@
 # kvu
 
-Simplest tool to update/add key-value pairs/lines
+The simplest command line tool to manage key-value pair lines.
 
 ```
 ┌──────────────────────────┐                                         ┌──────────────────────────┐
