@@ -19,7 +19,9 @@ jobs:
       - name: Stable with rustfmt and clippy
         uses: actions-rs/toolchain@v1
         with:
-          override: true # set installed toolchain as an override for the current directory
+          channel: stable
+          components: clippy
+          override: true
       - name: Cargo cache
         uses: actions/cache@v2
         with:
@@ -71,7 +73,8 @@ jobs:
       - name: Stable with rustfmt and clippy
         uses: actions-rs/toolchain@v1
         with:
-          override: true # set installed toolchain as an override for the current directory
+          channel: stable
+          override: true
       - name: Cargo cache
         uses: actions/cache@v2
         with:
