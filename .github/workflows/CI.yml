@@ -19,6 +19,7 @@ jobs:
       - name: Setup Rust toolcnain
         uses: actions-rs/toolchain@v1
         with:
+          toolchain: stable
           components: clippy
       - name: Cargo cache
         uses: actions/cache@v2
@@ -70,6 +71,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup Rust toolcnain
         uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
       - name: Cargo cache
         uses: actions/cache@v2
         with:
