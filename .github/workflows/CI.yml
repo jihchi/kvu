@@ -16,12 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Stable with rustfmt and clippy
+      - name: Setup Rust toolcnain
         uses: actions-rs/toolchain@v1
         with:
           channel: stable
           components: clippy
-          override: true
       - name: Cargo cache
         uses: actions/cache@v2
         with:
@@ -70,11 +69,10 @@ jobs:
       OS: ${{ matrix.OS }}
     steps:
       - uses: actions/checkout@v2
-      - name: Stable with rustfmt and clippy
+      - name: Setup Rust toolcnain
         uses: actions-rs/toolchain@v1
         with:
           channel: stable
-          override: true
       - name: Cargo cache
         uses: actions/cache@v2
         with:
