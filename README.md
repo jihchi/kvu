@@ -1,5 +1,11 @@
 # kvu
 
+[![Workflows - CI][workflows-ci-shield]][workflows-ci-url]
+[![crates.io version][crates-io-shield-version]][crates-io-url]
+[![crates.io license][crates-io-shield-license]][crates-io-url]
+[![crates.io downloads][crates-io-shield-downloads]][crates-io-url]
+[![docs.rs][docs-rs]][docs-rs-url]
+
 The simplest command line tool to manage key-value pair lines.
 
 ```
@@ -66,3 +72,12 @@ Does nothing when the key does not exist.
 $ echo -e "BUCKET=public\nREGION=ap-southeast-1" | kvu --delete REGION
 BUCKET=public
 ```
+
+[workflows-ci-shield]: https://github.com/jihchi/kvu/actions/workflows/CI.yml/badge.svg
+[workflows-ci-url]: https://github.com/jihchi/kvu/actions/workflows/CI.yml
+[crates-io-shield-version]: https://img.shields.io/crates/v/kvu
+[crates-io-shield-downloads]: https://img.shields.io/crates/d/kvu
+[crates-io-shield-license]: https://img.shields.io/crates/l/kvu
+[docs-rs]: https://img.shields.io/docsrs/kvu
+[crates-io-url]: https://crates.io/crates/kvu
+[docs-rs-url]: https://docs.rs/kvu
