@@ -12,11 +12,19 @@ The simplest command line tool to manage key-value pair lines.
 
 ## Installation
 
-### Cargo
+### From binaries
+
+The [release](https://github.com/jihchi/kvu/releases/latest) page includes precompiled binaries for Linux, macOS and Windows.
+
+### From Cargo
+
+With Rust's package manager [cargo](https://github.com/rust-lang/cargo), you can install kvu via:
 
 ```sh
 cargo install kvu
 ```
+
+Note that rust version _1.62.0_ or later is required.
 
 ## Usage
 
